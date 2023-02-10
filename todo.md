@@ -1,5 +1,0 @@
-- add license file
-- add readme file
-- add license string to source files
-- implement voting returns
-- implement reputation returns
