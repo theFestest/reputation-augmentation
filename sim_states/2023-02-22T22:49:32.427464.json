@@ -1,0 +1,2651 @@
+{
+    "random_seed": "2023-02-22T22:49:30.070651",
+    "parameters": {},
+    "answering_entites": [
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Education",
+                "Military",
+                "Science"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Food and drink",
+                "Religion",
+                "People"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Internet",
+                "Time",
+                "Science"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Health",
+                "Concepts",
+                "Nature"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Academic disciplines",
+                "Politics",
+                "Economy"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Business",
+                "Technology",
+                "History"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Philosophy",
+                "Food and drink",
+                "Life"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Language",
+                "Economy",
+                "Knowledge"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Language",
+                "Culture",
+                "Engineering"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Law",
+                "Food and drink",
+                "Entities"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Communication",
+                "Entities",
+                "Law"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Business",
+                "Philosophy",
+                "Science"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Law",
+                "Knowledge",
+                "Economy"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Human behavior",
+                "Education",
+                "Geography"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Nature",
+                "Government",
+                "People"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Culture",
+                "Human behavior",
+                "Entertainment"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Ethics",
+                "Academic disciplines",
+                "Life"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Philosophy",
+                "Internet",
+                "Mathematics"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Knowledge",
+                "Mass media",
+                "Communication"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Education",
+                "Health",
+                "Communication"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Sports",
+                "Internet",
+                "Human behavior"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Geography",
+                "Language",
+                "Society"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Sports",
+                "Entities",
+                "Academic disciplines"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Geography",
+                "Society",
+                "Energy"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Military",
+                "Culture",
+                "History"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Technology",
+                "Geography",
+                "Culture"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Religion",
+                "Academic disciplines",
+                "Culture"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Geography",
+                "Education",
+                "People"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Health",
+                "Religion",
+                "Information"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Nature",
+                "Entertainment",
+                "Academic disciplines"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Geography",
+                "Business",
+                "Philosophy"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Food and drink",
+                "Politics",
+                "Education"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Philosophy",
+                "Law",
+                "Humanities"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Religion",
+                "Military",
+                "Nature"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Language",
+                "History",
+                "Humanities"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Society",
+                "Entities",
+                "Ethics"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Science",
+                "Society",
+                "Health"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Education",
+                "Life",
+                "Geography"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Health",
+                "Religion",
+                "Time"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Education",
+                "Entities",
+                "Academic disciplines"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "People",
+                "Culture",
+                "Entities"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Knowledge",
+                "Language",
+                "Academic disciplines"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Information",
+                "Entertainment",
+                "Entities"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Government",
+                "Language",
+                "Mathematics"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Internet",
+                "Technology",
+                "Nature"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Energy",
+                "Government",
+                "Military"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Time",
+                "Language",
+                "Law"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Knowledge",
+                "Sports",
+                "Food and drink"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Food and drink",
+                "Entities",
+                "Language"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Concepts",
+                "Humanities",
+                "Economy"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Universe",
+                "Language",
+                "Internet"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "History",
+                "Economy",
+                "Mathematics"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Human behavior",
+                "Communication",
+                "Food and drink"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Sports",
+                "Academic disciplines",
+                "Time"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Culture",
+                "Entertainment",
+                "Life"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Engineering",
+                "Universe",
+                "Energy"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Mass media",
+                "Ethics",
+                "Education"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Science",
+                "Government",
+                "Knowledge"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Communication",
+                "Knowledge",
+                "Law"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Information",
+                "Human behavior",
+                "Energy"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Culture",
+                "Nature",
+                "Humanities"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Economy",
+                "Time",
+                "Nature"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Philosophy",
+                "Knowledge",
+                "Academic disciplines"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Engineering",
+                "Universe",
+                "Food and drink"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Time",
+                "Philosophy",
+                "Politics"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Ethics",
+                "Concepts",
+                "Law"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Technology",
+                "Life",
+                "Government"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Engineering",
+                "Nature",
+                "Academic disciplines"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Time",
+                "Knowledge",
+                "Business"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Society",
+                "Mathematics",
+                "Science"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Business",
+                "Philosophy",
+                "History"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Religion",
+                "Academic disciplines",
+                "Society"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Academic disciplines",
+                "Humanities",
+                "Knowledge"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Education",
+                "Culture",
+                "Philosophy"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Internet",
+                "Geography",
+                "Energy"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Entities",
+                "Technology",
+                "Energy"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Education",
+                "Communication",
+                "Sports"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Sports",
+                "Society",
+                "Life"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Communication",
+                "Nature",
+                "Knowledge"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Ethics",
+                "Internet",
+                "Military"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Law",
+                "Economy",
+                "Energy"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Technology",
+                "Science",
+                "Nature"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Universe",
+                "Entities",
+                "Ethics"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Language",
+                "Culture",
+                "Academic disciplines"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Universe",
+                "Internet",
+                "Concepts"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Food and drink",
+                "Mass media",
+                "Humanities"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Philosophy",
+                "Mass media",
+                "Entertainment"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Military",
+                "Engineering",
+                "Culture"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Academic disciplines",
+                "Knowledge",
+                "Education"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Energy",
+                "Life",
+                "Information"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Energy",
+                "Health",
+                "Technology"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Humanities",
+                "Communication",
+                "Economy"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Law",
+                "Communication",
+                "Language"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Military",
+                "Economy",
+                "Information"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Science",
+                "Economy",
+                "People"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Politics",
+                "Information",
+                "Entities"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Business",
+                "Human behavior",
+                "Engineering"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "History",
+                "Engineering",
+                "Technology"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Military",
+                "Life",
+                "Internet"
+            ]
+        },
+        {
+            "reputation": {},
+            "knowledge_domains": [
+                "Technology",
+                "Culture",
+                "Geography"
+            ]
+        }
+    ],
+    "question_pool": {
+        "context_set": {
+            "Academic disciplines": {},
+            "Business": {},
+            "Communication": {},
+            "Concepts": {},
+            "Culture": {},
+            "Economy": {},
+            "Education": {},
+            "Energy": {},
+            "Engineering": {},
+            "Entertainment": {},
+            "Entities": {},
+            "Ethics": {},
+            "Food and drink": {},
+            "Geography": {},
+            "Government": {},
+            "Health": {},
+            "History": {},
+            "Human behavior": {},
+            "Humanities": {},
+            "Information": {},
+            "Internet": {},
+            "Knowledge": {},
+            "Language": {},
+            "Law": {},
+            "Life": {},
+            "Mass media": {},
+            "Mathematics": {},
+            "Military": {},
+            "Nature": {},
+            "People": {},
+            "Philosophy": {},
+            "Politics": {},
+            "Religion": {},
+            "Science": {},
+            "Society": {},
+            "Sports": {},
+            "Technology": {},
+            "Time": {},
+            "Universe": {}
+        },
+        "question_history": [
+            {
+                "primary_context": "Geography",
+                "secondary_context": [
+                    "Information"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Sports",
+                "secondary_context": [
+                    "Language"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Politics",
+                "secondary_context": [
+                    "Law"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Human behavior",
+                "secondary_context": [
+                    "Life"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Sports",
+                "secondary_context": [
+                    "Food and drink"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Knowledge",
+                "secondary_context": [
+                    "Culture"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Government",
+                "secondary_context": [
+                    "Politics"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Time",
+                "secondary_context": [
+                    "Language"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Technology",
+                "secondary_context": [
+                    "Internet"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Time",
+                "secondary_context": [
+                    "Nature"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Geography",
+                "secondary_context": [
+                    "Business"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Academic disciplines",
+                "secondary_context": [
+                    "Information"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Education",
+                "secondary_context": [
+                    "Health"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Humanities",
+                "secondary_context": [
+                    "Academic disciplines"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Human behavior",
+                "secondary_context": [
+                    "Religion"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Information",
+                "secondary_context": [
+                    "Energy"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Sports",
+                "secondary_context": [
+                    "Culture"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Concepts",
+                "secondary_context": [
+                    "Academic disciplines"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Law",
+                "secondary_context": [
+                    "Science"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Business",
+                "secondary_context": [
+                    "Education"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "History",
+                "secondary_context": [
+                    "Nature"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Concepts",
+                "secondary_context": [
+                    "Law"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "People",
+                "secondary_context": [
+                    "Business"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Business",
+                "secondary_context": [
+                    "Academic disciplines"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Mathematics",
+                "secondary_context": [
+                    "Entities"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Mathematics",
+                "secondary_context": [
+                    "Entertainment"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Universe",
+                "secondary_context": [
+                    "Mass media"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Technology",
+                "secondary_context": [
+                    "Humanities"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Information",
+                "secondary_context": [
+                    "Military"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Sports",
+                "secondary_context": [
+                    "Society"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Nature",
+                "secondary_context": [
+                    "Government"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Nature",
+                "secondary_context": [
+                    "Human behavior"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Sports",
+                "secondary_context": [
+                    "Food and drink"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Philosophy",
+                "secondary_context": [
+                    "Science"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Society",
+                "secondary_context": [
+                    "History"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Business",
+                "secondary_context": [
+                    "Politics"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Entities",
+                "secondary_context": [
+                    "Communication"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Nature",
+                "secondary_context": [
+                    "Ethics"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Health",
+                "secondary_context": [
+                    "Concepts"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Military",
+                "secondary_context": [
+                    "Mass media"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Mass media",
+                "secondary_context": [
+                    "Ethics"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Information",
+                "secondary_context": [
+                    "Government"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Law",
+                "secondary_context": [
+                    "Mathematics"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Human behavior",
+                "secondary_context": [
+                    "Business"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Academic disciplines",
+                "secondary_context": [
+                    "Health"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Health",
+                "secondary_context": [
+                    "Communication"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Universe",
+                "secondary_context": [
+                    "History"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Economy",
+                "secondary_context": [
+                    "Technology"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Ethics",
+                "secondary_context": [
+                    "Information"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Economy",
+                "secondary_context": [
+                    "Communication"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Knowledge",
+                "secondary_context": [
+                    "Communication"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Language",
+                "secondary_context": [
+                    "Law"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Military",
+                "secondary_context": [
+                    "Health"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Entertainment",
+                "secondary_context": [
+                    "Society"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Entertainment",
+                "secondary_context": [
+                    "Sports"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Mathematics",
+                "secondary_context": [
+                    "Communication"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Human behavior",
+                "secondary_context": [
+                    "Sports"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Academic disciplines",
+                "secondary_context": [
+                    "Life"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Sports",
+                "secondary_context": [
+                    "Entities"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Technology",
+                "secondary_context": [
+                    "Society"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Philosophy",
+                "secondary_context": [
+                    "Law"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Language",
+                "secondary_context": [
+                    "Knowledge"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Politics",
+                "secondary_context": [
+                    "Mathematics"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Science",
+                "secondary_context": [
+                    "Concepts"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Energy",
+                "secondary_context": [
+                    "Communication"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Mass media",
+                "secondary_context": [
+                    "Knowledge"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Mass media",
+                "secondary_context": [
+                    "Language"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Sports",
+                "secondary_context": [
+                    "Government"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Information",
+                "secondary_context": [
+                    "Entities"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Religion",
+                "secondary_context": [
+                    "Government"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Human behavior",
+                "secondary_context": [
+                    "Academic disciplines"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Education",
+                "secondary_context": [
+                    "Engineering"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Universe",
+                "secondary_context": [
+                    "Culture"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Human behavior",
+                "secondary_context": [
+                    "Human behavior"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Business",
+                "secondary_context": [
+                    "Mass media"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Military",
+                "secondary_context": [
+                    "Mass media"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Business",
+                "secondary_context": [
+                    "Education"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Geography",
+                "secondary_context": [
+                    "Business"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Law",
+                "secondary_context": [
+                    "Nature"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Life",
+                "secondary_context": [
+                    "Law"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Communication",
+                "secondary_context": [
+                    "Government"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Geography",
+                "secondary_context": [
+                    "Human behavior"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Science",
+                "secondary_context": [
+                    "People"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Sports",
+                "secondary_context": [
+                    "Health"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Military",
+                "secondary_context": [
+                    "Food and drink"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Human behavior",
+                "secondary_context": [
+                    "Engineering"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Philosophy",
+                "secondary_context": [
+                    "Culture"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Mass media",
+                "secondary_context": [
+                    "Education"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "People",
+                "secondary_context": [
+                    "Human behavior"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Government",
+                "secondary_context": [
+                    "Information"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "History",
+                "secondary_context": [
+                    "Economy"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Communication",
+                "secondary_context": [
+                    "Mathematics"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Sports",
+                "secondary_context": [
+                    "Technology"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Humanities",
+                "secondary_context": [
+                    "Engineering"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Information",
+                "secondary_context": [
+                    "Geography"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Politics",
+                "secondary_context": [
+                    "People"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Culture",
+                "secondary_context": [
+                    "Philosophy"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "People",
+                "secondary_context": [
+                    "Education"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Time",
+                "secondary_context": [
+                    "Mathematics"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Business",
+                "secondary_context": [
+                    "Culture"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Universe",
+                "secondary_context": [
+                    "Life"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Education",
+                "secondary_context": [
+                    "Engineering"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Communication",
+                "secondary_context": [
+                    "Entertainment"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Universe",
+                "secondary_context": [
+                    "Energy"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Language",
+                "secondary_context": [
+                    "History"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Politics",
+                "secondary_context": [
+                    "Business"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Economy",
+                "secondary_context": [
+                    "Energy"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Engineering",
+                "secondary_context": [
+                    "Ethics"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Language",
+                "secondary_context": [
+                    "Entertainment"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Ethics",
+                "secondary_context": [
+                    "Universe"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Culture",
+                "secondary_context": [
+                    "Economy"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Geography",
+                "secondary_context": [
+                    "Technology"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Concepts",
+                "secondary_context": [
+                    "Geography"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Language",
+                "secondary_context": [
+                    "Military"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Religion",
+                "secondary_context": [
+                    "Language"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "History",
+                "secondary_context": [
+                    "Health"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Food and drink",
+                "secondary_context": [
+                    "Knowledge"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Religion",
+                "secondary_context": [
+                    "Education"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Life",
+                "secondary_context": [
+                    "Economy"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Nature",
+                "secondary_context": [
+                    "Science"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Universe",
+                "secondary_context": [
+                    "Ethics"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Internet",
+                "secondary_context": [
+                    "Ethics"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Religion",
+                "secondary_context": [
+                    "Mathematics"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Entertainment",
+                "secondary_context": [
+                    "Politics"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Business",
+                "secondary_context": [
+                    "Philosophy"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Mathematics",
+                "secondary_context": [
+                    "Culture"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "History",
+                "secondary_context": [
+                    "Culture"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Geography",
+                "secondary_context": [
+                    "Sports"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Internet",
+                "secondary_context": [
+                    "Health"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Knowledge",
+                "secondary_context": [
+                    "Economy"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Philosophy",
+                "secondary_context": [
+                    "Time"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Science",
+                "secondary_context": [
+                    "Energy"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Concepts",
+                "secondary_context": [
+                    "Society"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Entertainment",
+                "secondary_context": [
+                    "Mathematics"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Sports",
+                "secondary_context": [
+                    "Military"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Business",
+                "secondary_context": [
+                    "Health"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Philosophy",
+                "secondary_context": [
+                    "Military"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Sports",
+                "secondary_context": [
+                    "Military"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Education",
+                "secondary_context": [
+                    "Philosophy"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Concepts",
+                "secondary_context": [
+                    "Nature"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Concepts",
+                "secondary_context": [
+                    "Mass media"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Entities",
+                "secondary_context": [
+                    "Food and drink"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Knowledge",
+                "secondary_context": [
+                    "Time"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Military",
+                "secondary_context": [
+                    "Culture"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Geography",
+                "secondary_context": [
+                    "Engineering"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Knowledge",
+                "secondary_context": [
+                    "Education"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Language",
+                "secondary_context": [
+                    "Life"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Philosophy",
+                "secondary_context": [
+                    "Language"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Energy",
+                "secondary_context": [
+                    "Human behavior"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Food and drink",
+                "secondary_context": [
+                    "Knowledge"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Academic disciplines",
+                "secondary_context": [
+                    "History"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Science",
+                "secondary_context": [
+                    "History"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Energy",
+                "secondary_context": [
+                    "Universe"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Food and drink",
+                "secondary_context": [
+                    "Human behavior"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Internet",
+                "secondary_context": [
+                    "People"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Ethics",
+                "secondary_context": [
+                    "Mass media"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Information",
+                "secondary_context": [
+                    "Time"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Education",
+                "secondary_context": [
+                    "Mass media"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Business",
+                "secondary_context": [
+                    "People"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Life",
+                "secondary_context": [
+                    "Entertainment"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Business",
+                "secondary_context": [
+                    "Mass media"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Entities",
+                "secondary_context": [
+                    "Engineering"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Technology",
+                "secondary_context": [
+                    "Academic disciplines"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Religion",
+                "secondary_context": [
+                    "Politics"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Academic disciplines",
+                "secondary_context": [
+                    "Law"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "People",
+                "secondary_context": [
+                    "Concepts"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Ethics",
+                "secondary_context": [
+                    "Science"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Technology",
+                "secondary_context": [
+                    "Geography"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Mass media",
+                "secondary_context": [
+                    "Energy"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Knowledge",
+                "secondary_context": [
+                    "Engineering"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Technology",
+                "secondary_context": [
+                    "Academic disciplines"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Health",
+                "secondary_context": [
+                    "Economy"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Information",
+                "secondary_context": [
+                    "Mass media"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Engineering",
+                "secondary_context": [
+                    "People"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Communication",
+                "secondary_context": [
+                    "Health"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Economy",
+                "secondary_context": [
+                    "Entities"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Science",
+                "secondary_context": [
+                    "Life"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Philosophy",
+                "secondary_context": [
+                    "Entities"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Education",
+                "secondary_context": [
+                    "Time"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Energy",
+                "secondary_context": [
+                    "Science"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Society",
+                "secondary_context": [
+                    "Law"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Mathematics",
+                "secondary_context": [
+                    "Energy"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Sports",
+                "secondary_context": [
+                    "Health"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Knowledge",
+                "secondary_context": [
+                    "People"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Energy",
+                "secondary_context": [
+                    "Information"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Economy",
+                "secondary_context": [
+                    "Law"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Entertainment",
+                "secondary_context": [
+                    "Government"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Energy",
+                "secondary_context": [
+                    "Law"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Ethics",
+                "secondary_context": [
+                    "Information"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Government",
+                "secondary_context": [
+                    "Society"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Science",
+                "secondary_context": [
+                    "Philosophy"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Time",
+                "secondary_context": [
+                    "Life"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Government",
+                "secondary_context": [
+                    "Military"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Humanities",
+                "secondary_context": [
+                    "Entertainment"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Politics",
+                "secondary_context": [
+                    "Life"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Sports",
+                "secondary_context": [
+                    "Technology"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Energy",
+                "secondary_context": [
+                    "Entertainment"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Academic disciplines",
+                "secondary_context": [
+                    "Entities"
+                ],
+                "contention": 0.7,
+                "true_outcome": false,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Law",
+                "secondary_context": [
+                    "Internet"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            },
+            {
+                "primary_context": "Entertainment",
+                "secondary_context": [
+                    "Language"
+                ],
+                "contention": 0.7,
+                "true_outcome": true,
+                "req_confidence": 30.0
+            }
+        ]
+    }
+}

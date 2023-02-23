@@ -10,17 +10,24 @@ import copy
 from .players import AnsweringEntity, CreatingEntity, QuestionPool
 
 # Make sure logging gets sent to the screen
-logging.basicConfig(stream=sys.stdout, level=logging.INFO)  # Change to warning for pending implementations
+logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)  # Change to warning for pending implementations
 
 logger = logging.getLogger(__name__)
 
+# TODO:
+#   - sanity check voting algorithm for biases
+#   - state data suggests most parties are wrong more than half the time??
+#   - be able to run without reputation for comparison
+#   - introduce statistics keeping (include in state dumps)
+#   - include args/parameters in state dumps
+#   - plot live results of counts required to hit threshold?
+#   - include secondary context fields (could do most nested but increasingly rare if there is no overlap)
 # Lower priority:
 #   - implement state loading
 #   - integrate time or location based context?
 #   - implement program to load logged stats for analysis
 
-# TODO: introduce statistics keeping
-# TODO: include secondary context fields
+
 # Derived from: https://en.wikipedia.org/wiki/Category:Main_topic_classifications
 DEFAULT_CONTEXT = {
     "Academic disciplines": {},
@@ -74,18 +81,30 @@ def main():
     random.seed(a=random_seed)
 
     # TODO: load context from full dataset in its own file (decide how many secondary facets)
+    # with open("context_data.json") as f:
+    #     data_set = json.load(f)
     context_set = DEFAULT_CONTEXT
 
     # PARAMETER
     answering_population_count = 100
     # PARAMETER
-    preferential_domains = 10
+    experience_domains = 3
     # PARAMETER
-    questions_per_epoch = 4000
+    questions_per_epoch = 10000  # 4000
     # PARAMETER
     epochs = 1
     # PARAMETER
     epochs_per_save = 1
+
+    # Initialize statistics
+    # - Overall stats
+    total_questions = 0
+    indeterminate_resolution = 0
+    incorrectly_resolved = 0
+    # - Per question stats
+    participants_utilized = []
+    majority_reputation = []
+    minority_reputation = []
 
     # Initialize question pool from context_set
     question_pool = QuestionPool(context_set=context_set)
@@ -95,8 +114,8 @@ def main():
     for _ in range(answering_population_count):
         answering_parties.append(
             AnsweringEntity(
-                context_set,  # TODO: check that this is just a reference and not the whole data set
-                preferential_domains,
+                context_set,
+                experience_domains,
             )
         )
 
@@ -122,18 +141,31 @@ def main():
             while (available_reputation < this_question.req_confidence_theshold):
                 if len(remaining_voters) > 0:
                     # TODO: make selection favor high reputation instead of being uniform
+                    #   - this will be important for selecting the knowledgeable individuals
+                    #   - maybe count=[count=floor(entity.rep/0.2) for each entity], so high rep occurs more
                     #   - use random.sample(iterable, COUNTS, k) to adjust distribution
                     selected_participant: AnsweringEntity = random.choice(remaining_voters)
                     remaining_voters.remove(selected_participant)
                     available_reputation += selected_participant.calculate_reputation(this_question.all_context)
                     participating_voters.append(selected_participant)
                 else:
-                    # TODO: log aborting this question and keep stats
+                    # We record aborting this question for statistics below.
                     logger.info("Out of voters! Cannot reach threshold to evaluate this question.")
                     break  # Don't loop forever, just give up on this question.
 
-            # TODO: log status of how many parties it took
-            logger.info("Met confidence threshold with %s voters", len(participating_voters))
+            # If we used everyone and can't meet the threshold, record this and abort.
+            #   Note: it may not be immediately obvious who "everyone" is in a decentralized voting game.
+            #   This cutoff is an approximation for a time bound or a recency heuristic.
+            if len(remaining_voters) == 0 and available_reputation < this_question.req_confidence_theshold:
+                # Question aborted
+                participants_utilized.append(-1)
+                indeterminate_resolution += 1
+                total_questions += 1
+                continue  # TODO: Aborting this question, so also update other ending stats!
+            else:
+                participants_utilized.append(len(participating_voters))
+            # Record status of how many parties it took
+            logger.info("Met confidence threshold with %s voters", participants_utilized[-1])
 
             # Allow selected entities to vote; collect votes
             #   - Each entity has a probability c to vote the “true” outcome [parameter]
@@ -144,39 +176,45 @@ def main():
             #   - Each entity has a particular stake contributed when voting [parameter; these may just be uniform]
             question_evaluation: int = 0
             # TODO: check implemention of the resolution algorithm
-            collected_votes: tuple[bool, float, float] = []  # (vote, reputation, stake)
+            collected_votes: list[tuple[bool, float, float]] = []  # (vote, reputation, stake)
             for voter in participating_voters:
                 # Collect tuples of vote, reputation, and stake (uniform for now)
-                # TODO: do we need to know contention of question? Contention is a parameter for voters?
-                collected_votes.append(voter.vote(this_question.all_context))
+                collected_votes.append(
+                    voter.vote(this_question.all_context, this_question.contention, this_question.true_outcome)
+                    )
 
             cumulative_true_votes = 0
             cumulative_false_votes = 0
             resolved_outcome = None
             for vote in collected_votes:
-                # TODO: consider adding superlinearity with stake (only relevant if non-uniform stake)
+                # NOTE: We can consider adding superlinearity with stake (only relevant if non-uniform stake)
                 if vote[0] is True:
                     cumulative_true_votes += vote[1]*vote[2]  # Add: f(i) = reputation*stake for each vote
                 else:  # Vote is Flase
                     cumulative_false_votes += vote[1]*vote[2]  # Add: reputation*stake for each vote
             # Compute the _resolved outcome_ based on votes, and
             #  - Utilize reputation weights and stakes to resolve the outcome
-            if(cumulative_true_votes > cumulative_false_votes):
+            if (cumulative_true_votes > cumulative_false_votes):
                 resolved_outcome = True
-            elif(cumulative_true_votes < cumulative_false_votes):
+            elif (cumulative_true_votes < cumulative_false_votes):
                 resolved_outcome = False
             else:
-                # TODO: log this result for stats (should be unlikely)
-                logger.warning("Result indeterminate!")
+                # Record the indeterminate solution result for stats (should be unlikely)
+                indeterminate_resolution += 1
+                logger.warning("Result indeterminate! Continuing to next question...")
+                continue
 
             # Compute who voted correctly and adjust reputation
             #   - Regardless of the “true” outcome, adjust reputation according to votes and resolved outcome
             for voter, vote in zip(participating_voters, collected_votes):
                 voter.update_reputation(vote[0], resolved_outcome, this_question.all_context)
 
-            # TODO: log if resolved outcome is the presupposed one
+            # Record if resolved outcome is not the presupposed one
+            if resolved_outcome is not this_question.true_outcome:
+                incorrectly_resolved += 1
             logger.info("Resolved outcome agrees with expected: %s", resolved_outcome is this_question.true_outcome)
-
+            # Increment total questions completed.
+            total_questions += 1
             # END question proceessing
         # Save simulation state
         if epoch_number % epochs_per_save == 0:
@@ -187,7 +225,7 @@ def main():
                     "answering_entites": [e.dump_state() for e in answering_parties],
                     "question_pool": question_pool.dump_state()
                 }
-                f.write(json.dumps(current_state))
+                f.write(json.dumps(current_state, indent=4))
 
 
 if __name__ == "__main__":
