@@ -7,7 +7,7 @@ import datetime
 import random
 import copy
 
-from .players import AnsweringEntity, CreatingEntity, QuestionPool
+from .players import AnsweringEntity, QuestionPool
 
 # Make sure logging gets sent to the screen
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)  # Change to warning for pending implementations
@@ -15,82 +15,39 @@ logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)  # Change to warning
 logger = logging.getLogger(__name__)
 
 # TODO:
-#   - sanity check voting algorithm for biases
-#   - state data suggests most parties are wrong more than half the time??
 #   - be able to run without reputation for comparison
-#   - introduce statistics keeping (include in state dumps)
 #   - include args/parameters in state dumps
 #   - plot live results of counts required to hit threshold?
-#   - include secondary context fields (could do most nested but increasingly rare if there is no overlap)
+#   - include secondary context fields (could do more nested than 2 but increasingly rare if there is no overlap)
 # Lower priority:
 #   - implement state loading
 #   - integrate time or location based context?
 #   - implement program to load logged stats for analysis
 
-
-# Derived from: https://en.wikipedia.org/wiki/Category:Main_topic_classifications
-DEFAULT_CONTEXT = {
-    "Academic disciplines": {},
-    "Business": {},
-    "Communication": {},
-    "Concepts": {},
-    "Culture": {},
-    "Economy": {},
-    "Education": {},
-    "Energy": {},
-    "Engineering": {},
-    "Entertainment": {},
-    "Entities": {},
-    "Ethics": {},
-    "Food and drink": {},
-    "Geography": {},
-    "Government": {},
-    "Health": {},
-    "History": {},
-    "Human behavior": {},
-    "Humanities": {},
-    "Information": {},
-    "Internet": {},
-    "Knowledge": {},
-    "Language": {},
-    "Law": {},
-    "Life": {},
-    "Mass media": {},
-    "Mathematics": {},
-    "Military": {},
-    "Nature": {},
-    "People": {},
-    "Philosophy": {},
-    "Politics": {},
-    "Religion": {},
-    "Science": {},
-    "Society": {},
-    "Sports": {},
-    "Technology": {},
-    "Time": {},
-    "Universe": {},
-}
+# Data files derived from: https://en.wikipedia.org/wiki/Category:Main_topic_classifications
 
 
+# Run with: python3.10 -m src.simulation, or similar
 def main():
-
     # TODO: configure the simulation with arg parser for a default simulation run
     argparser = argparse.ArgumentParser()
 
     random_seed = datetime.datetime.now().isoformat()
     random.seed(a=random_seed)
 
-    # TODO: load context from full dataset in its own file (decide how many secondary facets)
-    # with open("context_data.json") as f:
-    #     data_set = json.load(f)
-    context_set = DEFAULT_CONTEXT
+    # Load context from full dataset in its own file (decide how many secondary facets)
+    data_file = "data/context_data.json"
+    data_file = "data/simple.json"
+    with open(data_file) as f:
+        data_set = json.load(f)
+    context_set = data_set
 
     # PARAMETER
     answering_population_count = 100
     # PARAMETER
     experience_domains = 3
     # PARAMETER
-    questions_per_epoch = 10000  # 4000
+    questions_per_epoch = 200  # 4000
     # PARAMETER
     epochs = 1
     # PARAMETER
@@ -99,9 +56,9 @@ def main():
     # Initialize statistics
     # - Overall stats
     total_questions = 0
-    indeterminate_resolution = 0
-    incorrectly_resolved = 0
     # - Per question stats
+    incorrectly_resolved = 0
+    indeterminate_resolution = 0
     participants_utilized = []
     majority_reputation = []
     minority_reputation = []
@@ -127,6 +84,7 @@ def main():
             logger.info("Running question #%s in epoch #%s", question_number, epoch_number)
             # Generate a question from context
             this_question: QuestionPool.Question = question_pool.generate_question()
+            total_questions += 1
             #   - Assign the question, q, a bassline contention. [parameter]
             #   - Assign the question a secret “true” outcome for analysis purposes.
             #   - Assign a threshold confidence [parameter]
@@ -158,9 +116,11 @@ def main():
             #   This cutoff is an approximation for a time bound or a recency heuristic.
             if len(remaining_voters) == 0 and available_reputation < this_question.req_confidence_theshold:
                 # Question aborted
-                participants_utilized.append(-1)
-                indeterminate_resolution += 1
-                total_questions += 1
+                # participants_utilized.append(-1)
+                # indeterminate_resolution += 1
+                this_question.indeterminate_resolution = True
+                this_question.aborted = True
+                this_question.parties_used = None
                 continue  # TODO: Aborting this question, so also update other ending stats!
             else:
                 participants_utilized.append(len(participating_voters))
@@ -174,8 +134,7 @@ def main():
             #       reputation can be a tool to allow long term system behavior to favor
             #       this knowledge.
             #   - Each entity has a particular stake contributed when voting [parameter; these may just be uniform]
-            question_evaluation: int = 0
-            # TODO: check implemention of the resolution algorithm
+            # Implemention of the resolution algorithm
             collected_votes: list[tuple[bool, float, float]] = []  # (vote, reputation, stake)
             for voter in participating_voters:
                 # Collect tuples of vote, reputation, and stake (uniform for now)
@@ -201,8 +160,10 @@ def main():
             else:
                 # Record the indeterminate solution result for stats (should be unlikely)
                 indeterminate_resolution += 1
+                this_question.indeterminate_resolution = True
                 logger.warning("Result indeterminate! Continuing to next question...")
                 continue
+            this_question.parties_used = len(collected_votes)
 
             # Compute who voted correctly and adjust reputation
             #   - Regardless of the “true” outcome, adjust reputation according to votes and resolved outcome
@@ -210,6 +171,7 @@ def main():
                 voter.update_reputation(vote[0], resolved_outcome, this_question.all_context)
 
             # Record if resolved outcome is not the presupposed one
+            this_question.resolved_correctly = resolved_outcome is this_question.true_outcome
             if resolved_outcome is not this_question.true_outcome:
                 incorrectly_resolved += 1
             logger.info("Resolved outcome agrees with expected: %s", resolved_outcome is this_question.true_outcome)
@@ -221,7 +183,14 @@ def main():
             with open(f"./sim_states/{datetime.datetime.now().isoformat()}.json", "x") as f:
                 current_state = {
                     "random_seed": random_seed,
-                    "parameters": {},
+                    "parameters": {
+                        "data_file": data_file,
+                        "answering_population_count": answering_population_count,
+                        "experience_domains": experience_domains,
+                        "questions_per_epoch": questions_per_epoch,
+                        "epochs": epochs,
+                        "epochs_per_save": epochs_per_save,
+                    },
                     "answering_entites": [e.dump_state() for e in answering_parties],
                     "question_pool": question_pool.dump_state()
                 }

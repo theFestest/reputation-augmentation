@@ -4,6 +4,7 @@ import random
 import logging
 import numpy as np
 from abc import ABC, abstractmethod
+from typing import Optional
 
 logger = logging.getLogger(__name__)
 
@@ -28,11 +29,10 @@ class AnsweringEntity(SimulationEntity):
         self.sparse_rep: dict[str, tuple[int, int]] = {}  # (total, correct)
 
         # Select experience_domains_count base context from context_set
+        #   - these are primary domains that give a boost in probability of correctness
         self.knowledge_domains = random.sample(context_set.keys(), k=experience_domains_count)
-        # TODO: Assign and store (relatively) high probability for answering in these domains?
-        # nevermind: these values are by question, so determine them on the fly
 
-    def vote(self, question_context, inverse_contention, true_outcome) -> tuple[bool, float, float]:
+    def vote(self, question_context, inverse_contention: float, true_outcome: bool) -> tuple[bool, float, float]:
         # Choose an outcome based on, c, their inherent probability to align with MPPO for this question.
         #   - We can view the bassline c as the inverse_contention of the question. (~.5 high contention, ~1 low)
         #   - Each party will have some offset from this bassline. Experienced parties are assume to have higher.
@@ -50,10 +50,9 @@ class AnsweringEntity(SimulationEntity):
                 domain_experience = True
         # Vote based on a random float being LESS than the inverse contention (plus boost)
         #  Consider inverse_contention \in (0.5, 1] centered at ~0.75
-        #   low chance that: random.random() > inverse_contention --> vote false
-        #   high chance that: random.random() < inverse_contention --> vote true.
-        # TODO: check: gah i'm biasing it to say true. but the rest of the math is reasonable I think.
-        #   pass in the "true answer" and select the opposite if voting against (unaligned)?
+        #   low chance that: random.random() > inverse_contention --> vote opposite true_outcome
+        #   high chance that: random.random() < inverse_contention --> vote true_outcome.
+        # Given the "true answer", select the opposite if voting against (unaligned)
         if domain_experience:
             aligned = random.random() < min(inverse_contention + experience_boost, 1)
         else:
@@ -66,9 +65,7 @@ class AnsweringEntity(SimulationEntity):
             vote = not true_outcome
         else:
             vote = true_outcome
-        # TODO: why does output data suggest more than half of answers are wrong?
         return (vote, self.calculate_reputation(question_context), 1)
-        # return (random.choice([True, True, False]), self.calculate_reputation(question_context), 1)
 
     # cache these to avoid a second call?
     # cache is only valid for one iteration: include question, epoch number parameters
@@ -87,9 +84,9 @@ class AnsweringEntity(SimulationEntity):
         relevant_reputation = [self.sparse_rep[c] for c in question_context if c in self.sparse_rep.keys()]
         for total, correct in relevant_reputation:
             # Note: Handle negatives? For now just default to zero.
-            rep_vector.append(max(correct/total, 0))
+            rep_vector.append(max(correct, 0))  # dividing here creates an extra penalty and traps < 1.
         logger.debug("Reputation vector is: %s", rep_vector)
-        # TODO: move default into sigmoid?
+        # TODO: move default into sigmoid as a tiny positive shift?
         magnitude = np.linalg.norm(rep_vector, ord=1) + default_rep  # if len(rep_vector) != 0 else default_rep
         # Use magnitude to evaluate in the sigmoid s(x) = c1(1/(1+exp(−x·c2))−1/2)
         #  - will handle negatives if our "projection" method allows it
@@ -126,13 +123,17 @@ class QuestionPool(SimulationEntity):
             self.primary_context = primary
             self.secondary_context = secondary if secondary is not None else []
             # PARAMETER: bassline "inverse" contention. ~.5 is high contention, ~1 is low.
-            #   Assign dynamically (default = 0.7): uniform is fine? or should we prefer a Gaussian distribution?
-            # TODO: random.uniform(0.51, 0.99), max(0.51, min(random.gauss(mu=75, sigma=10.0), 1))
-            self.contention: int = 0.7
+            #   Assign dynamically (default = 0.7): uniform instead? random.uniform(0.51, 0.99)
+            self.contention: int = max(0.51, min(random.gauss(mu=.7, sigma=.1), 1))  # (.5, 1] centered at .7
             self.true_outcome = random.choice([True, False])
             # PARAMETER: confidence threshold to be considered answerable
-            #   Assign dynamically: is uniform better? or should we prefer a Gaussian distribution?
-            self.req_confidence_theshold: float = 30.0  # TODO: random.gauss(mu=30, sigma=5.0)
+            #   Assign dynamically: is uniform better? or random.gauss(mu=30, sigma=5.0)?
+            self.req_confidence_theshold: float = 30.0
+            # Result statistics
+            self.aborted = False
+            self.indeterminate_resolution = False
+            self.parties_used: Optional[bool] = None
+            self.resolved_correctly: Optional[bool] = None
 
         @property
         def all_context(self) -> list[str]:
@@ -148,7 +149,11 @@ class QuestionPool(SimulationEntity):
                 "secondary_context": self.secondary_context,
                 "contention": self.contention,
                 "true_outcome": self.true_outcome,
-                "req_confidence": self.req_confidence_theshold
+                "req_confidence": self.req_confidence_theshold,
+                "aborted": self.aborted,
+                "indeterminate_resolution": self.indeterminate_resolution,
+                "parties_used": self.parties_used,
+                "resolved_correctly": self.resolved_correctly
             }
 
         def load_state(self, state_data: dict):
@@ -157,28 +162,40 @@ class QuestionPool(SimulationEntity):
             self.contention = state_data['contention']
             self.true_outcome = state_data['true_outcome']
             self.req_confidence_theshold = state_data['req_confidence']
+            self.aborted = state_data['aborted']
+            self.indeterminate_resolution = state_data['indeterminate_resolution']
+            self.parties_used = state_data['parties_used']
+            self.resolved_correctly = state_data['resolved_correctly']
 
     def __init__(self, context_set):
         self.context_set = copy.deepcopy(context_set)
         self.question_history = []
 
-    def generate_question(self, secondary_count=0) -> Question:
+    def generate_question(self, secondary_count=1) -> Question:
         # NOTE: Realistically these will be somewhat biased toward certain domains
         # Select random domains from context lists
+        primary = random.choice(list(self.context_set.keys()))
+        secondary = []
+        for _ in range((secondary_count)):
+            # Pick secondary domains from the sub-collection at the primary domain
+            #   if no sub-collection, pick another primary domain
+            sub_collection = self.context_set.get(primary, {})
+            choice = random.choice(list(sub_collection if len(sub_collection) != 0 else self.context_set.keys()))
+            secondary.append(choice)
         new_question = QuestionPool.Question(
-            primary=random.choice(list(self.context_set.keys())),
-            # TODO: assign secondary from nested sublists (after including this full data)!
-            secondary=[random.choice(list(self.context_set.keys()))]
+            primary=primary,
+            # Assign secondary from nested sublists (after including this full data)!
+            secondary=secondary
         )
 
         # Keep questions in order!
-        self.question_history.append(new_question.dump_state())
+        self.question_history.append(new_question)
         return new_question
 
     def dump_state(self):
         return {
             "context_set": self.context_set,
-            "question_history": self.question_history
+            "question_history": [q.dump_state() for q in self.question_history]
         }
 
     def load_state(self, state_data: dict):
