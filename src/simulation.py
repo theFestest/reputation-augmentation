@@ -16,8 +16,11 @@ logger = logging.getLogger(__name__)
 
 # TODO:
 #   - be able to run without reputation for comparison
-#   - include args/parameters in state dumps
-#   - plot live results of counts required to hit threshold?
+#   - plot live results of counts required to hit threshold? How to best analyze?
+#   - configure with arg parse?
+#   - tune max rep with respect to voting thresholds to determine _min_ voters
+#   - tune rep growth to determine how much demonstration is needed
+#   - tune default rep: move into sigmoid as a tiny positive shift? (or rather use as a default if sigmoid is zero?)
 #   - include secondary context fields (could do more nested than 2 but increasingly rare if there is no overlap)
 # Lower priority:
 #   - implement state loading
@@ -29,7 +32,7 @@ logger = logging.getLogger(__name__)
 
 # Run with: python3.10 -m src.simulation, or similar
 def main():
-    # TODO: configure the simulation with arg parser for a default simulation run
+    # Configure the simulation with arg parser for a default simulation run or given params.
     argparser = argparse.ArgumentParser()
 
     random_seed = datetime.datetime.now().isoformat()
@@ -47,11 +50,13 @@ def main():
     # PARAMETER
     experience_domains = 3
     # PARAMETER
-    questions_per_epoch = 200  # 4000
+    questions_per_epoch = 2000  # 4000
     # PARAMETER
     epochs = 1
     # PARAMETER
     epochs_per_save = 1
+    # PARAMETER
+    use_reputation: bool = True
 
     # Initialize statistics
     # - Overall stats
@@ -59,7 +64,6 @@ def main():
     # - Per question stats
     incorrectly_resolved = 0
     indeterminate_resolution = 0
-    participants_utilized = []
     majority_reputation = []
     minority_reputation = []
 
@@ -96,6 +100,9 @@ def main():
             available_reputation = 0
             remaining_voters = copy.copy(answering_parties)
             participating_voters: list[AnsweringEntity] = []
+            # Note: we will interpret this confidence threshold as a minimum common one.
+            #   - A given user may opt to increase important questions at will.
+            #   - TODO: Try to evaluate archievable tolerances once high rep is established?
             while (available_reputation < this_question.req_confidence_theshold):
                 if len(remaining_voters) > 0:
                     # TODO: make selection favor high reputation instead of being uniform
@@ -116,16 +123,17 @@ def main():
             #   This cutoff is an approximation for a time bound or a recency heuristic.
             if len(remaining_voters) == 0 and available_reputation < this_question.req_confidence_theshold:
                 # Question aborted
-                # participants_utilized.append(-1)
                 # indeterminate_resolution += 1
+                #   (Do we consider an aborted question indeterminate? I say no, bc it would be accepted)
                 this_question.indeterminate_resolution = True
                 this_question.aborted = True
                 this_question.parties_used = None
-                continue  # TODO: Aborting this question, so also update other ending stats!
+                continue  # Aborting this question, so go around.
             else:
-                participants_utilized.append(len(participating_voters))
+                this_question.parties_used = len(participating_voters)
+                # participants_utilized.append(len(participating_voters))
             # Record status of how many parties it took
-            logger.info("Met confidence threshold with %s voters", participants_utilized[-1])
+            logger.info("Met confidence threshold with %s voters", this_question.parties_used)
 
             # Allow selected entities to vote; collect votes
             #   - Each entity has a probability c to vote the “true” outcome [parameter]
@@ -147,10 +155,16 @@ def main():
             resolved_outcome = None
             for vote in collected_votes:
                 # NOTE: We can consider adding superlinearity with stake (only relevant if non-uniform stake)
-                if vote[0] is True:
-                    cumulative_true_votes += vote[1]*vote[2]  # Add: f(i) = reputation*stake for each vote
-                else:  # Vote is Flase
-                    cumulative_false_votes += vote[1]*vote[2]  # Add: reputation*stake for each vote
+                if use_reputation:
+                    if vote[0] is True:
+                        cumulative_true_votes += vote[1]*vote[2]  # Add: f(i) = reputation*stake for each vote
+                    else:  # Vote is Flase
+                        cumulative_false_votes += vote[1]*vote[2]  # Add: reputation*stake for each vote
+                else:
+                    if vote[0] is True:
+                        cumulative_true_votes += vote[2]  # Add: f(i) = stake for each vote
+                    else:  # Vote is Flase
+                        cumulative_false_votes += vote[2]  # Add: stake for each vote
             # Compute the _resolved outcome_ based on votes, and
             #  - Utilize reputation weights and stakes to resolve the outcome
             if (cumulative_true_votes > cumulative_false_votes):
@@ -163,7 +177,6 @@ def main():
                 this_question.indeterminate_resolution = True
                 logger.warning("Result indeterminate! Continuing to next question...")
                 continue
-            this_question.parties_used = len(collected_votes)
 
             # Compute who voted correctly and adjust reputation
             #   - Regardless of the “true” outcome, adjust reputation according to votes and resolved outcome
@@ -192,7 +205,12 @@ def main():
                         "epochs_per_save": epochs_per_save,
                     },
                     "answering_entites": [e.dump_state() for e in answering_parties],
-                    "question_pool": question_pool.dump_state()
+                    "question_pool": question_pool.dump_state(),
+                    "progress": {
+                        "total_questions": total_questions,
+                        "incorrectly_resolved": incorrectly_resolved,
+                        "indeterminate_resolution": indeterminate_resolution
+                    }
                 }
                 f.write(json.dumps(current_state, indent=4))
 

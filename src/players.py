@@ -75,18 +75,16 @@ class AnsweringEntity(SimulationEntity):
         # - compute historical correctness (handle negatives?)
         # - append to list
         # - Return vector magnitude of this list
-        # TODO: these need much tuning!
         # PARAMETER: Bounded limit for range of reputation
         c1 = 3
         # PARAMETER: Growth rate for reputation
-        c2 = 1
+        c2 = 1  # 0.01  # TODO: if less than 1, it is very hard to reach threshold. Do (1 + rep) so min rep is 1?
         rep_vector = []
         relevant_reputation = [self.sparse_rep[c] for c in question_context if c in self.sparse_rep.keys()]
         for total, correct in relevant_reputation:
             # Note: Handle negatives? For now just default to zero.
             rep_vector.append(max(correct, 0))  # dividing here creates an extra penalty and traps < 1.
         logger.debug("Reputation vector is: %s", rep_vector)
-        # TODO: move default into sigmoid as a tiny positive shift?
         magnitude = np.linalg.norm(rep_vector, ord=1) + default_rep  # if len(rep_vector) != 0 else default_rep
         # Use magnitude to evaluate in the sigmoid s(x) = c1(1/(1+exp(−x·c2))−1/2)
         #  - will handle negatives if our "projection" method allows it
