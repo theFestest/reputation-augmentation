@@ -10,14 +10,15 @@ import copy
 from .players import AnsweringEntity, QuestionPool
 
 # Make sure logging gets sent to the screen
-logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)  # Change to warning for pending implementations
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)  # Change to warning for pending implementations
 
 logger = logging.getLogger(__name__)
 
 # TODO:
-#   - be able to run without reputation for comparison
-#   - plot live results of counts required to hit threshold? How to best analyze?
-#   - configure with arg parse?
+#   - plot live results of counts required to hit threshold? How to best analyze? Extra scripts?
+#   - configure with arg parse? increase automation of running all trials
+#       - note that several are defined within players.py and need to be passed in
+#       - what is the best way to generate all parameter configurations?
 #   - tune max rep with respect to voting thresholds to determine _min_ voters
 #   - tune rep growth to determine how much demonstration is needed
 #   - tune default rep: move into sigmoid as a tiny positive shift? (or rather use as a default if sigmoid is zero?)
@@ -45,18 +46,42 @@ def main():
         data_set = json.load(f)
     context_set = data_set
 
+    argparser.add_argument("--answering_population", help="Count of answering parties", type=int, required=True)
+    argparser.add_argument("--experience_domains", help="Count of experience domains", type=int, default=3)
+    argparser.add_argument("--questions_per_epoch", help="Count of questions per epoch", type=int, default=200)
+    argparser.add_argument("--epochs", help="Count of epochs to run", type=int, default=1)
+    argparser.add_argument("--epochs_per_save", help="Count of epochs between saves", type=int, default=1)
+    argparser.add_argument("--save_directory", help="Location to save outputs", type=str, default="sim_states")
+    argparser.add_argument("--use-rep", help="Use reputation weighting", type=bool, required=True)
+    argparser.add_argument("--rep-c1", help="Reputation growth limit c1", type=float, required=True)
+    argparser.add_argument("--rep-c2", help="Reputation growth rate c2", type=float, required=True)
+    argparser.add_argument("--silence_logging", help="Run the sim faster by turning off logging", action="store_true")
+
+    # Parse inputs
+    args = argparser.parse_args()
+
     # PARAMETER
-    answering_population_count = 100
+    answering_population_count = args.answering_population  # 100
     # PARAMETER
-    experience_domains = 3
+    experience_domains = args.experience_domains  # 3
     # PARAMETER
-    questions_per_epoch = 2000  # 4000
+    questions_per_epoch = args.questions_per_epoch  # 2000  # 4000
     # PARAMETER
-    epochs = 1
+    epochs = args.epochs
     # PARAMETER
-    epochs_per_save = 1
+    epochs_per_save = args.epochs_per_save
     # PARAMETER
-    use_reputation: bool = True
+    save_directory: str = args.save_directory
+    # PARAMETER
+    use_reputation: bool = args.use_rep  # True  # Takes ~20x longer with reputation for 2k questions
+    # PARAMETER
+    rep_c1 = args.rep_c1
+    # PARAMETER
+    rep_c2 = args.rep_c2
+
+    if args.silence_logging:
+        # NOTE: only applies for this file, not globally.
+        logger.setLevel(logging.WARN)
 
     # Initialize statistics
     # - Overall stats
@@ -76,6 +101,8 @@ def main():
         answering_parties.append(
             AnsweringEntity(
                 context_set,
+                rep_c1,
+                rep_c2,
                 experience_domains,
             )
         )
@@ -102,7 +129,7 @@ def main():
             participating_voters: list[AnsweringEntity] = []
             # Note: we will interpret this confidence threshold as a minimum common one.
             #   - A given user may opt to increase important questions at will.
-            #   - TODO: Try to evaluate archievable tolerances once high rep is established?
+            #   - EXPERIMENT: Try to evaluate archievable tolerances once high rep is established?
             while (available_reputation < this_question.req_confidence_theshold):
                 if len(remaining_voters) > 0:
                     # TODO: make selection favor high reputation instead of being uniform
@@ -111,7 +138,10 @@ def main():
                     #   - use random.sample(iterable, COUNTS, k) to adjust distribution
                     selected_participant: AnsweringEntity = random.choice(remaining_voters)
                     remaining_voters.remove(selected_participant)
-                    available_reputation += selected_participant.calculate_reputation(this_question.all_context)
+                    if use_reputation:
+                        available_reputation += selected_participant.calculate_reputation(this_question.all_context)
+                    else:
+                        available_reputation += 1  # Contributions are counts without rep
                     participating_voters.append(selected_participant)
                 else:
                     # We record aborting this question for statistics below.
@@ -147,7 +177,12 @@ def main():
             for voter in participating_voters:
                 # Collect tuples of vote, reputation, and stake (uniform for now)
                 collected_votes.append(
-                    voter.vote(this_question.all_context, this_question.contention, this_question.true_outcome)
+                    voter.vote(
+                        this_question.all_context,
+                        this_question.contention,
+                        this_question.true_outcome,
+                        use_reputation
+                        )
                     )
 
             cumulative_true_votes = 0
@@ -156,11 +191,13 @@ def main():
             for vote in collected_votes:
                 # NOTE: We can consider adding superlinearity with stake (only relevant if non-uniform stake)
                 if use_reputation:
+                    # Voting with reputation and stake weighting
                     if vote[0] is True:
                         cumulative_true_votes += vote[1]*vote[2]  # Add: f(i) = reputation*stake for each vote
                     else:  # Vote is Flase
                         cumulative_false_votes += vote[1]*vote[2]  # Add: reputation*stake for each vote
                 else:
+                    # Only voting with stake (i.e. 1 to 1)
                     if vote[0] is True:
                         cumulative_true_votes += vote[2]  # Add: f(i) = stake for each vote
                     else:  # Vote is Flase
@@ -193,9 +230,14 @@ def main():
             # END question proceessing
         # Save simulation state
         if epoch_number % epochs_per_save == 0:
-            with open(f"./sim_states/{datetime.datetime.now().isoformat()}.json", "x") as f:
+            with open(f"./{save_directory}/{datetime.datetime.now().isoformat()}.json", "x") as f:
                 current_state = {
                     "random_seed": random_seed,
+                    "progress": {
+                        "total_questions": total_questions,
+                        "incorrectly_resolved": incorrectly_resolved,
+                        "indeterminate_resolution": indeterminate_resolution
+                    },
                     "parameters": {
                         "data_file": data_file,
                         "answering_population_count": answering_population_count,
@@ -206,11 +248,6 @@ def main():
                     },
                     "answering_entites": [e.dump_state() for e in answering_parties],
                     "question_pool": question_pool.dump_state(),
-                    "progress": {
-                        "total_questions": total_questions,
-                        "incorrectly_resolved": incorrectly_resolved,
-                        "indeterminate_resolution": indeterminate_resolution
-                    }
                 }
                 f.write(json.dumps(current_state, indent=4))
 

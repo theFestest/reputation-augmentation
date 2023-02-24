@@ -22,7 +22,7 @@ class SimulationEntity(ABC):
 
 class AnsweringEntity(SimulationEntity):
 
-    def __init__(self, context_set: dict, experience_domains_count: int = 1):
+    def __init__(self, context_set: dict, c1: float, c2: float, experience_domains_count: int = 1):
 
         # Use dictionary as a sparse vector of reputation for this identity
         #   - Track total contributions and total correct per domain
@@ -31,8 +31,12 @@ class AnsweringEntity(SimulationEntity):
         # Select experience_domains_count base context from context_set
         #   - these are primary domains that give a boost in probability of correctness
         self.knowledge_domains = random.sample(context_set.keys(), k=experience_domains_count)
+        # Growth limit in sigmoid reputation function
+        self._c1 = c1  # trying 3?
+        # Growth rate in sigmoid reputation function
+        self._c2 = c2  # if less than 1, it is very hard to reach threshold. Do (1 + rep) so min rep is 1?
 
-    def vote(self, question_context, inverse_contention: float, true_outcome: bool) -> tuple[bool, float, float]:
+    def vote(self, q_context, inverse_contention: float, true_outcome: bool, rep: bool) -> tuple[bool, float, float]:
         # Choose an outcome based on, c, their inherent probability to align with MPPO for this question.
         #   - We can view the bassline c as the inverse_contention of the question. (~.5 high contention, ~1 low)
         #   - Each party will have some offset from this bassline. Experienced parties are assume to have higher.
@@ -46,7 +50,7 @@ class AnsweringEntity(SimulationEntity):
         # PARAMETER: the probability increase granted by being knowledgable
         experience_boost = 0.1
         for domain in self.knowledge_domains:
-            if domain in question_context:
+            if domain in q_context:
                 domain_experience = True
         # Vote based on a random float being LESS than the inverse contention (plus boost)
         #  Consider inverse_contention \in (0.5, 1] centered at ~0.75
@@ -65,20 +69,20 @@ class AnsweringEntity(SimulationEntity):
             vote = not true_outcome
         else:
             vote = true_outcome
-        return (vote, self.calculate_reputation(question_context), 1)
+        if rep:
+            return (vote, self.calculate_reputation(q_context), 1)
+        else:
+            # Return None for rep to ensure this isn't used anywhere.
+            return (vote, None, 1)
 
     # cache these to avoid a second call?
-    # cache is only valid for one iteration: include question, epoch number parameters
+    # cache is only valid for one iteration: include question #, epoch # in args?
     def calculate_reputation(self, question_context, default_rep=1):
         # Project our reputation onto the question context and return confidence value
         # - Iterate each context domain in the question
         # - compute historical correctness (handle negatives?)
         # - append to list
         # - Return vector magnitude of this list
-        # PARAMETER: Bounded limit for range of reputation
-        c1 = 3
-        # PARAMETER: Growth rate for reputation
-        c2 = 1  # 0.01  # TODO: if less than 1, it is very hard to reach threshold. Do (1 + rep) so min rep is 1?
         rep_vector = []
         relevant_reputation = [self.sparse_rep[c] for c in question_context if c in self.sparse_rep.keys()]
         for total, correct in relevant_reputation:
@@ -88,7 +92,7 @@ class AnsweringEntity(SimulationEntity):
         magnitude = np.linalg.norm(rep_vector, ord=1) + default_rep  # if len(rep_vector) != 0 else default_rep
         # Use magnitude to evaluate in the sigmoid s(x) = c1(1/(1+exp(−x·c2))−1/2)
         #  - will handle negatives if our "projection" method allows it
-        adjusted = c1*(1/(1+np.exp(-magnitude*c2))-1/2)
+        adjusted = self._c1*(1/(1+np.exp(-magnitude*self._c2))-1/2)
         logger.info("Voting with %s reputation.", adjusted)
         return adjusted
 
