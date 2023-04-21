@@ -22,11 +22,14 @@ class SimulationEntity(ABC):
 
 class AnsweringEntity(SimulationEntity):
 
-    def __init__(self, context_set: dict, c1: float, c2: float, experience_domains_count: int = 1):
+    def __init__(self, context_set: dict, c1: float, c2: float, experience_domains_count: int = 1, exp_boost=0.1):
 
         # Use dictionary as a sparse vector of reputation for this identity
         #   - Track total contributions and total correct per domain
         self.sparse_rep: dict[str, tuple[int, int]] = {}  # (total, correct)
+
+        # Count of questions this party has participated in
+        self._participation_count = 0
 
         # Select experience_domains_count base context from context_set
         #   - these are primary domains that give a boost in probability of correctness
@@ -35,6 +38,8 @@ class AnsweringEntity(SimulationEntity):
         self._c1 = c1  # trying 3?
         # Growth rate in sigmoid reputation function
         self._c2 = c2  # if less than 1, it is very hard to reach threshold. Do (1 + rep) so min rep is 1?
+        # PARAMETER: the probability increase granted by being knowledgable
+        self._experience_boost = exp_boost
 
     def vote(self, q_context, inverse_contention: float, true_outcome: bool, rep: bool) -> tuple[bool, float, float]:
         # Choose an outcome based on, c, their inherent probability to align with MPPO for this question.
@@ -46,9 +51,8 @@ class AnsweringEntity(SimulationEntity):
         #  Vote: the proposition vote for this question for this voter
         #  Reputation: the reputation for this given question context
         #  Stake: the voting stake contributed, default to 1 for simpler analysis
+        self._participation_count += 1
         domain_experience = False
-        # PARAMETER: the probability increase granted by being knowledgable
-        experience_boost = 0.1
         for domain in self.knowledge_domains:
             if domain in q_context:
                 domain_experience = True
@@ -58,7 +62,7 @@ class AnsweringEntity(SimulationEntity):
         #   high chance that: random.random() < inverse_contention --> vote true_outcome.
         # Given the "true answer", select the opposite if voting against (unaligned)
         if domain_experience:
-            aligned = random.random() < min(inverse_contention + experience_boost, 1)
+            aligned = random.random() < min(inverse_contention + self._experience_boost, 1)
         else:
             aligned = random.random() < inverse_contention
         # We are assuming that everyone has a preferred side.
@@ -70,14 +74,14 @@ class AnsweringEntity(SimulationEntity):
         else:
             vote = true_outcome
         if rep:
-            return (vote, self.calculate_reputation(q_context), 1)
+            return (vote, self.calculate_confidence(q_context), 1)
         else:
             # Return None for rep to ensure this isn't used anywhere.
             return (vote, None, 1)
 
     # cache these to avoid a second call?
     # cache is only valid for one iteration: include question #, epoch # in args?
-    def calculate_reputation(self, question_context, default_rep=1):
+    def calculate_confidence(self, question_context, default_rep=1):
         # Project our reputation onto the question context and return confidence value
         # - Iterate each context domain in the question
         # - compute historical correctness (handle negatives?)
@@ -86,15 +90,21 @@ class AnsweringEntity(SimulationEntity):
         rep_vector = []
         relevant_reputation = [self.sparse_rep[c] for c in question_context if c in self.sparse_rep.keys()]
         for total, correct in relevant_reputation:
-            # Note: Handle negatives? For now just default to zero.
+            # Note: Handle negatives? For now just default to zero. (see below)
             rep_vector.append(max(correct, 0))  # dividing here creates an extra penalty and traps < 1.
         logger.debug("Reputation vector is: %s", rep_vector)
-        magnitude = np.linalg.norm(rep_vector, ord=1) + default_rep  # if len(rep_vector) != 0 else default_rep
+        magnitude = np.linalg.norm(rep_vector, ord=1)  # + default_rep  # if len(rep_vector) != 0 else default_rep
         # Use magnitude to evaluate in the sigmoid s(x) = c1(1/(1+exp(−x·c2))−1/2)
-        #  - will handle negatives if our "projection" method allows it
-        adjusted = self._c1*(1/(1+np.exp(-magnitude*self._c2))-1/2)
-        logger.info("Voting with %s reputation.", adjusted)
-        return adjusted
+        #   - could handle negatives if our "projection" method allows it
+        #   - this would permit negative contributions for persistent incorrectness
+        adjusted_rep = self._c1*(1/(1+np.exp(-magnitude*self._c2))-1/2)
+        logger.info("Voting with %s reputation.", 1+adjusted_rep)
+        # NOTE: currently configured to only be able to increase vote weight, not decrease.
+        #   - consider allowing reducing contribution if historically incorrect? needs projection changes
+        #   - how to decide if incorrect enough to deduct instead?
+        #   perhaps, sum of contributions in these domains is incorrect on avg?
+        # breakpoint()
+        return 1 + adjusted_rep
 
     def update_reputation(self, voted: bool, resolved_outcome: bool, question_context):
         # Increment +1 if agreeing with true result, -1 if disagreeing
@@ -109,6 +119,7 @@ class AnsweringEntity(SimulationEntity):
 
     def dump_state(self):
         return {
+            "participation_count": self._participation_count,
             "reputation": self.sparse_rep,
             "knowledge_domains": self.knowledge_domains
             }
@@ -116,21 +127,27 @@ class AnsweringEntity(SimulationEntity):
     def load_state(self, state_data: dict):
         self.sparse_rep = state_data['reputation']
         self.knowledge_domains = state_data['knowledge_domains']
+        self._participation_count = state_data['participation_count']
 
 
 class QuestionPool(SimulationEntity):
 
     class Question(SimulationEntity):
-        def __init__(self, primary: str, secondary: list[str] = None) -> None:
+        def __init__(self,
+                     primary: str,
+                     secondary: list[str] = None,
+                     confidence_threshold: float = 50.0,
+                     contention_center: float = 0.7) -> None:
             self.primary_context = primary
             self.secondary_context = secondary if secondary is not None else []
             # PARAMETER: bassline "inverse" contention. ~.5 is high contention, ~1 is low.
             #   Assign dynamically (default = 0.7): uniform instead? random.uniform(0.51, 0.99)
-            self.contention: int = max(0.51, min(random.gauss(mu=.7, sigma=.1), 1))  # (.5, 1] centered at .7
+            #   Currently: (.5, 1] centered at .7
+            self.contention: int = max(0.51, min(random.gauss(mu=contention_center, sigma=.1), 1))
             self.true_outcome = random.choice([True, False])
             # PARAMETER: confidence threshold to be considered answerable
             #   Assign dynamically: is uniform better? or random.gauss(mu=30, sigma=5.0)?
-            self.req_confidence_theshold: float = 30.0
+            self.req_confidence_theshold: float = confidence_threshold
             # Result statistics
             self.aborted = False
             self.indeterminate_resolution = False
@@ -173,7 +190,8 @@ class QuestionPool(SimulationEntity):
         self.context_set = copy.deepcopy(context_set)
         self.question_history = []
 
-    def generate_question(self, secondary_count=1) -> Question:
+    def generate_question(self, secondary_count=2, confidence_threshold=50.0, contention_center=0.7) -> Question:
+        # PARAMETER: secondary_count
         # NOTE: Realistically these will be somewhat biased toward certain domains
         # Select random domains from context lists
         primary = random.choice(list(self.context_set.keys()))
@@ -187,7 +205,9 @@ class QuestionPool(SimulationEntity):
         new_question = QuestionPool.Question(
             primary=primary,
             # Assign secondary from nested sublists (after including this full data)!
-            secondary=secondary
+            secondary=secondary,
+            confidence_threshold=confidence_threshold,
+            contention_center=contention_center
         )
 
         # Keep questions in order!
